@@ -32,5 +32,11 @@ int main()
 
     cout << "no mais esq: " << arv.noMaisEsquerda() << endl;
 
+    cout << "arvore em ordem: " << endl;
+    cout << "A arvore eh de busca?: ";
+    if (arv.emOrdem())cout << "Sim.";
+        else cout << "Nao.";
+    cout << endl;
+
     return 0;
 }

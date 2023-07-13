@@ -27,6 +27,10 @@ class ArvBin
     void inverte();
     int noMaisEsquerda();
     int noMaisDireita();
+    bool ehEmOrdem();
+    int* retornaEmOrdemVet();
+    void imprimeEmOrdem();
+    void removeNo();
 
   private:
     NoArv *raiz; // ponteiro para o No raiz da �rvore
@@ -48,6 +52,7 @@ class ArvBin
     void auxInverte(NoArv *p);
     int auxNoEsq(NoArv *p);
     int auxNoDir(NoArv *p);
+    void auxEmOrdem(NoArv *p, int* emOrdem, int* i );
 };
 
 #endif // ARVBIN_H_INCLUDED

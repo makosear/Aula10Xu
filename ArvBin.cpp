@@ -388,8 +388,70 @@ int ArvBin::noMaisDireita(){
 int ArvBin::auxNoDir(NoArv *p){
     int noDir;
     if (p->getDir()!= NULL){
-        noEsq = auxNoDir(p->getDir());
+        noDir = auxNoDir(p->getDir());
         return noDir;
     }
     else return p->getInfo();
 }
+
+int* ArvBin::retornaEmOrdemVet(){
+    int* emOrdem = new int[contaNos()];
+    int i = 0;
+
+    auxEmOrdem(raiz, emOrdem, &i);
+
+    return emOrdem;
+}
+
+void ArvBin::imprimeEmOrdem(){
+    int* emOrdem = new int[contaNos()];
+    int i = 0;
+
+    auxEmOrdem(raiz, emOrdem, &i);
+    for (int j = 0; j < i; j++){
+        cout << emOrdem[j] << " ";
+    }
+
+    cout << endl;
+
+    delete [] emOrdem;
+}
+
+bool ArvBin::ehEmOrdem(){
+    int* emOrdem = new int[contaNos()];
+    int i = 0;
+
+    auxEmOrdem(raiz, emOrdem, &i);
+
+    bool ehOrdem = true;
+
+    for (int j = 0; j < i; j++){
+        if (emOrdem[j] > emOrdem[j+1]){
+                ehOrdem = !ehOrdem;
+                cout << emOrdem[j] << " eh maior que " << emOrdem[j+1] << endl;
+                break;
+        }
+    }
+
+    if (ehOrdem)return true;
+    else return false;
+
+    delete [] emOrdem;
+}
+
+void ArvBin::auxEmOrdem(NoArv *p, int* emOrdem, int* i ){
+    if (p!= NULL){
+        auxEmOrdem(p->getEsq(), emOrdem, i);
+        emOrdem[*i] = p->getInfo();
+        (*i)++;
+        auxEmOrdem(p->getDir(), emOrdem, i);
+    }
+}
+
+/*
+bool ArvBin::ehABB(){
+    return auxEhABB(raiz);
+}
+
+bool ArvBin::auxEhABB(NoArv *p){
+*/
